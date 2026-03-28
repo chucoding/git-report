@@ -1,0 +1,5 @@
+{
+  "cleanUrls": true,
+  "installCommand": "pnpm install --frozen-lockfile --ignore-scripts=false",
+  "buildCommand": "pnpm install --frozen-lockfile --ignore-scripts=false && pnpm build"
+}

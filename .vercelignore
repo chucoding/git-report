@@ -1,0 +1,7 @@
+.next
+node_modules
+coverage
+.turbo
+.pnpm-store
+*.log
+
