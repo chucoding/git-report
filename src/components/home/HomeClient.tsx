@@ -16,12 +16,16 @@ function RepoUrlCard(props: {
   return (
     <Card>
       <div className="space-y-2">
-        <label className="text-sm text-text-muted">GitHub URL</label>
+        <label className="flex items-baseline justify-between text-xs font-medium tracking-[0.16em] text-text-muted">
+          <span>GitHub URL</span>
+          <span className="font-mono text-[10px] text-text-muted/70">01</span>
+        </label>
         <Input
           value={props.repoUrl}
           onChange={(e) => props.onChange(e.target.value)}
           placeholder="https://github.com/org/repo"
           inputMode="url"
+          className="font-mono"
         />
       </div>
     </Card>
@@ -38,7 +42,10 @@ function BranchSelectCard(props: {
   return (
     <Card>
       <div className="space-y-2">
-        <label className="text-sm text-text-muted">브랜치</label>
+        <label className="flex items-baseline justify-between text-xs font-medium tracking-[0.16em] text-text-muted">
+          <span>브랜치</span>
+          <span className="font-mono text-[10px] text-text-muted/70">02</span>
+        </label>
         <Select
           value={props.branch}
           onChange={(e) => props.onChange(e.target.value)}
@@ -75,7 +82,10 @@ function DateRangeCard(props: {
     <Card>
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-sm text-text-muted">시작 날짜</label>
+          <label className="flex items-baseline justify-between text-xs font-medium tracking-[0.16em] text-text-muted">
+            <span>시작 날짜</span>
+            <span className="font-mono text-[10px] text-text-muted/70">03</span>
+          </label>
           <Input
             value={props.fromDate}
             onChange={(e) => props.onChangeFrom(e.target.value)}
@@ -83,7 +93,10 @@ function DateRangeCard(props: {
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm text-text-muted">끝 날짜</label>
+          <label className="flex items-baseline justify-between text-xs font-medium tracking-[0.16em] text-text-muted">
+            <span>끝 날짜</span>
+            <span className="font-mono text-[10px] text-text-muted/70">04</span>
+          </label>
           <Input
             value={props.toDate}
             onChange={(e) => props.onChangeTo(e.target.value)}
@@ -92,8 +105,10 @@ function DateRangeCard(props: {
         </div>
       </div>
 
-      <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <div className="text-xs text-text-muted">시간은 00:00 ~ 23:59 KST 고정</div>
+      <div className="mt-5 flex flex-col gap-2 border-t border-base-border/60 pt-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="text-xs text-text-muted">
+          시간은 00:00 ~ 23:59 KST 고정
+        </div>
         <Button
           variant="primary"
           onClick={props.onSubmit}
@@ -207,7 +222,7 @@ export default function HomeClient() {
 
   return (
     <AppShell>
-      <div className="space-y-6">
+      <div className="space-y-7 sm:space-y-8">
         <RepoUrlCard repoUrl={repoUrl} onChange={setRepoUrl} />
 
         {canLoadBranches ? (
