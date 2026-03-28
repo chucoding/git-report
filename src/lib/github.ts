@@ -22,11 +22,12 @@ type GitHubCompare = {
 }
 
 function buildHeaders(token?: string) {
+  const resolvedToken = token || process.env.GITHUB_TOKEN
   const headers: Record<string, string> = {
     Accept: 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28'
   }
-  if (token) headers.Authorization = `Bearer ${token}`
+  if (resolvedToken) headers.Authorization = `Bearer ${resolvedToken}`
   return headers
 }
 
@@ -140,4 +141,3 @@ export function compactDiffFromFiles(files: {
   }
   return parts.join('\n')
 }
-

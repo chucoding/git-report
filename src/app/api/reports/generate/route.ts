@@ -29,8 +29,7 @@ export async function POST(req: Request) {
       repoUrl: body.repoUrl,
       branch: body.branch,
       fromDate: body.fromDate,
-      toDate: body.toDate,
-      githubToken: body.githubToken
+      toDate: body.toDate
     })
 
     await insertRunLog({ reportId: placeholder.id, stage: 'done', message: 'Generated' })
@@ -50,4 +49,3 @@ export async function POST(req: Request) {
     )
   }
 }
-

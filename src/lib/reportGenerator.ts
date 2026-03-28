@@ -69,7 +69,6 @@ export async function generateReportCard(input: {
   branch: string
   fromDate: string
   toDate: string
-  githubToken?: string
 }): Promise<{
   fromKst: string
   toKst: string
@@ -83,8 +82,7 @@ export async function generateReportCard(input: {
     repoUrl: input.repoUrl,
     branch: input.branch,
     sinceIso,
-    untilIso,
-    token: input.githubToken
+    untilIso
   })
 
   const contributorsBase = buildContributorStats(commits)
@@ -103,8 +101,7 @@ export async function generateReportCard(input: {
     const files = await fetchCompareFiles({
       repoUrl: input.repoUrl,
       baseSha: parent,
-      headSha: c.sha,
-      token: input.githubToken
+      headSha: c.sha
     })
     const text = compactDiffFromFiles(
       files.map((f) => ({

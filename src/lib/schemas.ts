@@ -13,8 +13,7 @@ export const GenerateReportSchema = z.object({
   repoUrl: RepoUrlSchema,
   branch: z.string().min(1),
   fromDate: IsoDateSchema,
-  toDate: IsoDateSchema,
-  githubToken: z.string().min(1).optional()
+  toDate: IsoDateSchema
 })
 
 export const ListReportsSchema = z.object({})
