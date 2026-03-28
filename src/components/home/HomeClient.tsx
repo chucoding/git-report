@@ -210,13 +210,17 @@ export default function HomeClient() {
       <div className="space-y-6">
         <RepoUrlCard repoUrl={repoUrl} onChange={setRepoUrl} />
 
-        <BranchSelectCard
-          branches={branches}
-          branch={branch}
-          isLoading={isLoadingBranches}
-          disabled={!canLoadBranches || isLoadingBranches || branches.length === 0}
-          onChange={setBranch}
-        />
+        {canLoadBranches ? (
+          <div className="animate-fade-in-up">
+            <BranchSelectCard
+              branches={branches}
+              branch={branch}
+              isLoading={isLoadingBranches}
+              disabled={isLoadingBranches || branches.length === 0}
+              onChange={setBranch}
+            />
+          </div>
+        ) : null}
 
         <DateRangeCard
           fromDate={fromDate}
