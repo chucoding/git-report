@@ -10,8 +10,7 @@ export async function GET(
 ) {
   const report = await getReportById(params.id)
   if (!report) {
-    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+    return NextResponse.json({ error: '찾을 수 없습니다.' }, { status: 404 })
   }
   return NextResponse.json({ report }, { headers: { 'Cache-Control': 'no-store' } })
 }
-

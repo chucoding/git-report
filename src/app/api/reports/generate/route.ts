@@ -16,14 +16,14 @@ export async function POST(req: Request) {
       fromKst: `${body.fromDate} 00:00`,
       toKst: `${body.toDate} 23:59`,
       card: {
-        title: 'Generating report…',
+        title: '리포트 생성 중…',
         contributors: [],
-        mermaid: 'graph TD\n  A["Generating"] --> B["Please wait"]',
-        markdown: 'Generating report…'
+        mermaid: 'graph TD\n  A["생성 중"] --> B["잠시만 기다려 주세요"]',
+        markdown: '리포트를 생성하고 있습니다…'
       }
     })
 
-    await insertRunLog({ reportId: placeholder.id, stage: 'start', message: 'Started' })
+    await insertRunLog({ reportId: placeholder.id, stage: 'start', message: '시작' })
 
     const { fromKst, toKst, card } = await generateReportCard({
       repoUrl: body.repoUrl,
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
       toDate: body.toDate
     })
 
-    await insertRunLog({ reportId: placeholder.id, stage: 'done', message: 'Generated' })
+    await insertRunLog({ reportId: placeholder.id, stage: 'done', message: '완료' })
 
     const sb = (await import('@/lib/supabaseServer')).getSupabaseServerClient()
     const { error } = await sb
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ id: placeholder.id })
   } catch (e) {
     return NextResponse.json(
-      { error: e instanceof Error ? e.message : 'Unknown error' },
+      { error: e instanceof Error ? e.message : '알 수 없는 오류' },
       { status: 400 }
     )
   }

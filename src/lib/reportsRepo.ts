@@ -105,7 +105,7 @@ export async function ensureShareSlug(id: string): Promise<string> {
     .select('id, share_slug')
     .eq('id', id)
     .single()
-  if (error || !data) throw new Error(error?.message || 'Not found')
+  if (error || !data) throw new Error(error?.message || '찾을 수 없습니다.')
 
   const existing = (data as { share_slug: string | null }).share_slug
   if (existing) {
@@ -140,4 +140,3 @@ export async function insertRunLog(input: {
   })
   if (error) throw new Error(error.message)
 }
-

@@ -52,7 +52,7 @@ function chunkText(input: string, maxChars: number) {
 function safeMermaid(flowSteps: string[]) {
   const nodes = flowSteps.slice(0, 8)
   if (nodes.length === 0) {
-    return 'graph TD\n  A["Changes"] --> B["Report"]'
+    return 'graph TD\n  A["변경 사항"] --> B["리포트"]'
   }
   const lines: string[] = ['graph TD']
   for (let i = 0; i < nodes.length; i++) {

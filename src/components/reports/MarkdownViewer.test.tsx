@@ -11,7 +11,6 @@ describe('MarkdownViewer', () => {
 
   it('shows empty state for blank input', () => {
     render(<MarkdownViewer markdown={'   '} />)
-    expect(screen.getByText('No content.')).toBeInTheDocument()
+    expect(screen.getByText('내용이 없습니다.')).toBeInTheDocument()
   })
 })
-

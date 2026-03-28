@@ -14,9 +14,8 @@ export async function POST(
     return NextResponse.json({ shareUrl }, { headers: { 'Cache-Control': 'no-store' } })
   } catch (e) {
     return NextResponse.json(
-      { error: e instanceof Error ? e.message : 'Unknown error' },
+      { error: e instanceof Error ? e.message : '알 수 없는 오류' },
       { status: 400 }
     )
   }
 }
-

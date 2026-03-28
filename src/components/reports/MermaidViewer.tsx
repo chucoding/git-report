@@ -12,7 +12,7 @@ export default function MermaidViewer({ code }: { code: string }) {
     mermaid.initialize({
       startOnLoad: false,
       securityLevel: 'strict',
-      theme: 'dark'
+      theme: 'neutral'
     })
   }, [])
 
@@ -38,16 +38,16 @@ export default function MermaidViewer({ code }: { code: string }) {
   }, [id, normalized])
 
   if (!normalized) {
-    return <div className="text-sm text-text-muted">No diagram.</div>
+    return <div className="text-sm text-text-muted">다이어그램이 없습니다.</div>
   }
 
   if (!svg) {
     return (
       <div className="space-y-3">
-        <div className="rounded-lg border border-base-border bg-base-bg/30 px-3 py-2 text-sm text-danger">
-          Diagram render failed. Showing source.
+        <div className="rounded-lg border border-danger/30 bg-danger/10 px-3 py-2 text-sm text-danger">
+          다이어그램 렌더링에 실패했습니다. 소스를 표시합니다.
         </div>
-        <pre className="overflow-auto rounded-lg border border-base-border bg-base-bg/30 p-3 text-xs leading-5">
+        <pre className="overflow-auto rounded-lg border border-base-border bg-base-surface2/70 p-3 text-xs leading-5">
           {normalized}
         </pre>
       </div>
@@ -55,9 +55,8 @@ export default function MermaidViewer({ code }: { code: string }) {
   }
 
   return (
-    <div className="overflow-auto rounded-lg border border-base-border bg-base-bg/30 p-3">
+    <div className="overflow-auto rounded-lg border border-base-border bg-base-surface2/70 p-3">
       <div dangerouslySetInnerHTML={{ __html: svg }} />
     </div>
   )
 }
-

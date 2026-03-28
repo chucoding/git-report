@@ -6,25 +6,34 @@ module.exports = {
     extend: {
       colors: {
         base: {
-          bg: '#070A12',
-          surface: '#0D1426',
-          border: 'rgba(255,255,255,0.09)'
+          bg: '#F7F9FC',
+          surface: '#FFFFFF',
+          surface2: '#F1F5FF',
+          border: 'rgba(15, 23, 42, 0.12)'
         },
         text: {
-          primary: '#EEF3FF',
-          muted: '#A7B6D6'
+          primary: '#0B1220',
+          muted: '#5B6B86'
+        },
+        primary: {
+          DEFAULT: '#0EA5E9',
+          foreground: '#062032'
+        },
+        secondary: {
+          DEFAULT: '#84CC16',
+          foreground: '#0B1B07'
         },
         accent: {
-          DEFAULT: '#B8FF5A'
+          DEFAULT: '#0EA5E9'
         },
         accent2: {
-          DEFAULT: '#65D5FF'
+          DEFAULT: '#84CC16'
         },
         success: {
-          DEFAULT: '#34D399'
+          DEFAULT: '#16A34A'
         },
         danger: {
-          DEFAULT: '#F87171'
+          DEFAULT: '#EF4444'
         }
       },
       fontFamily: {
@@ -34,10 +43,10 @@ module.exports = {
       },
       boxShadow: {
         surface:
-          '0 20px 70px rgba(0,0,0,0.55), 0 12px 30px rgba(0,0,0,0.35)'
+          '0 30px 70px rgba(2, 8, 23, 0.12), 0 10px 22px rgba(2, 8, 23, 0.08)'
       }
     }
   },
-  plugins: [require('@tailwindcss/typography')]
+  plugins: [require('@tailwindcss/typography'), require('tailwindcss-animate')]
 }
 

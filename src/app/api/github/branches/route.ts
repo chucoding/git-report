@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ branches })
   } catch (e) {
     return NextResponse.json(
-      { error: e instanceof Error ? e.message : 'Unknown error' },
+      { error: e instanceof Error ? e.message : '알 수 없는 오류' },
       { status: 400 }
     )
   }

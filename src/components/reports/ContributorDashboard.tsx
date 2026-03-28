@@ -10,7 +10,7 @@ export default function ContributorDashboard({
   return (
     <div className="space-y-3">
       {contributors.length === 0 ? (
-        <div className="text-sm text-text-muted">No contributors found.</div>
+        <div className="text-sm text-text-muted">기여자가 없습니다.</div>
       ) : null}
       {contributors.map((c) => (
         <div key={c.login} className="flex items-center gap-3">
@@ -22,11 +22,11 @@ export default function ContributorDashboard({
           <div className="min-w-0 flex-1">
             <div className="flex items-center justify-between gap-3">
               <div className="truncate text-sm font-medium">{c.login}</div>
-              <div className="text-xs text-text-muted">{c.commits} commits</div>
+              <div className="text-xs text-text-muted">{c.commits}회</div>
             </div>
-            <div className="mt-2 h-2 rounded-full bg-white/5">
+            <div className="mt-2 h-2 rounded-full bg-black/5">
               <div
-                className="h-2 rounded-full bg-accent"
+                className="h-2 rounded-full bg-primary"
                 style={{ width: `${Math.round((c.commits / max) * 100)}%` }}
               />
             </div>
@@ -39,4 +39,3 @@ export default function ContributorDashboard({
     </div>
   )
 }
-

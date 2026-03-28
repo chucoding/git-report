@@ -5,6 +5,7 @@ import AppShell from '@/components/shell/AppShell'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
+import DatePicker from '@/components/ui/DatePicker'
 import Select from '@/components/ui/Select'
 import { parseRepoUrl } from '@/lib/repoUrl'
 import { isValidIsoDate } from '@/lib/kst'
@@ -17,7 +18,7 @@ function RepoUrlCard(props: {
     <Card>
       <div className="space-y-2">
         <label className="flex items-baseline justify-between text-xs font-medium tracking-[0.16em] text-text-muted">
-          <span>GitHub URL</span>
+          <span>저장소 URL</span>
           <span className="font-mono text-[10px] text-text-muted/70">01</span>
         </label>
         <Input
@@ -52,7 +53,7 @@ function BranchSelectCard(props: {
           disabled={props.disabled}
         >
           {props.isLoading ? (
-            <option value="">Loading…</option>
+            <option value="">불러오는 중…</option>
           ) : props.branches.length === 0 ? (
             <option value="">브랜치를 불러올 수 없습니다</option>
           ) : (
@@ -86,22 +87,14 @@ function DateRangeCard(props: {
             <span>시작 날짜</span>
             <span className="font-mono text-[10px] text-text-muted/70">03</span>
           </label>
-          <Input
-            value={props.fromDate}
-            onChange={(e) => props.onChangeFrom(e.target.value)}
-            type="date"
-          />
+          <DatePicker value={props.fromDate} onChange={props.onChangeFrom} />
         </div>
         <div className="space-y-2">
           <label className="flex items-baseline justify-between text-xs font-medium tracking-[0.16em] text-text-muted">
             <span>끝 날짜</span>
             <span className="font-mono text-[10px] text-text-muted/70">04</span>
           </label>
-          <Input
-            value={props.toDate}
-            onChange={(e) => props.onChangeTo(e.target.value)}
-            type="date"
-          />
+          <DatePicker value={props.toDate} onChange={props.onChangeTo} />
         </div>
       </div>
 
@@ -114,7 +107,7 @@ function DateRangeCard(props: {
           onClick={props.onSubmit}
           disabled={!props.canSubmit || props.isSubmitting}
         >
-          {props.isSubmitting ? 'Generating…' : 'Generate report'}
+          {props.isSubmitting ? '생성 중…' : '리포트 생성'}
         </Button>
       </div>
 
@@ -183,7 +176,7 @@ export default function HomeClient() {
           setBranches(list)
           setBranch(list[0] || '')
         } catch (e) {
-          setError(e instanceof Error ? e.message : 'Unknown error')
+          setError(e instanceof Error ? e.message : '알 수 없는 오류')
         } finally {
           setIsLoadingBranches(false)
         }
@@ -209,12 +202,12 @@ export default function HomeClient() {
         })
       })
       const data = (await res.json()) as { id?: string; error?: string }
-      if (!res.ok) throw new Error(data.error || 'Failed to generate report')
+      if (!res.ok) throw new Error(data.error || '리포트 생성에 실패했습니다.')
       if (data.id) {
         window.location.href = `/reports/${data.id}`
       }
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Unknown error')
+      setError(e instanceof Error ? e.message : '알 수 없는 오류')
     } finally {
       setIsGenerating(false)
     }
@@ -223,10 +216,18 @@ export default function HomeClient() {
   return (
     <AppShell>
       <div className="space-y-7 sm:space-y-8">
-        <RepoUrlCard repoUrl={repoUrl} onChange={setRepoUrl} />
+        <div
+          className="animate-fade-in-up motion-reduce:animate-none"
+          style={{ animationDelay: '40ms' }}
+        >
+          <RepoUrlCard repoUrl={repoUrl} onChange={setRepoUrl} />
+        </div>
 
         {canLoadBranches ? (
-          <div className="animate-fade-in-up">
+          <div
+            className="animate-fade-in-up motion-reduce:animate-none"
+            style={{ animationDelay: '90ms' }}
+          >
             <BranchSelectCard
               branches={branches}
               branch={branch}
@@ -237,16 +238,21 @@ export default function HomeClient() {
           </div>
         ) : null}
 
-        <DateRangeCard
-          fromDate={fromDate}
-          toDate={toDate}
-          onChangeFrom={setFromDate}
-          onChangeTo={setToDate}
-          canSubmit={canGenerate}
-          isSubmitting={isGenerating}
-          onSubmit={generateReport}
-          error={error}
-        />
+        <div
+          className="animate-fade-in-up motion-reduce:animate-none"
+          style={{ animationDelay: '130ms' }}
+        >
+          <DateRangeCard
+            fromDate={fromDate}
+            toDate={toDate}
+            onChangeFrom={setFromDate}
+            onChangeTo={setToDate}
+            canSubmit={canGenerate}
+            isSubmitting={isGenerating}
+            onSubmit={generateReport}
+            error={error}
+          />
+        </div>
       </div>
     </AppShell>
   )

@@ -7,8 +7,8 @@ export default function BenchmarkPanel({
 }) {
   if (!items || items.length === 0) {
     return (
-      <div className="rounded-lg border border-base-border bg-white/5 px-3 py-4 text-sm text-text-muted">
-        No benchmark items.
+      <div className="rounded-xl border border-base-border bg-base-surface2/70 px-3 py-4 text-sm text-text-muted">
+        벤치마크 항목이 없습니다.
       </div>
     )
   }
@@ -21,7 +21,7 @@ export default function BenchmarkPanel({
           href={it.url}
           target="_blank"
           rel="noreferrer"
-          className="block rounded-lg border border-base-border bg-white/5 p-3 transition hover:bg-white/10"
+          className="block rounded-xl border border-base-border bg-base-surface2/70 p-3 transition hover:bg-base-surface2"
         >
           <div className="text-sm font-medium">{it.name}</div>
           <div className="mt-1 line-clamp-2 text-xs text-text-muted">
@@ -30,15 +30,14 @@ export default function BenchmarkPanel({
           {it.previewImageUrl ? (
             <img
               src={it.previewImageUrl}
-              alt="Preview"
-              className="mt-3 aspect-[16/9] w-full rounded-md border border-base-border object-cover"
+              alt="미리보기"
+              className="mt-3 aspect-[16/9] w-full rounded-lg border border-base-border object-cover"
               loading="lazy"
             />
           ) : null}
-          <div className="mt-2 truncate text-xs text-accent">{it.url}</div>
+          <div className="mt-2 truncate text-xs text-primary">{it.url}</div>
         </a>
       ))}
     </div>
   )
 }
-
